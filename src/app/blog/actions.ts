@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 export async function createPost(data: FormData) {
-  const { title, body } = Object.fromEntries(data) as Omit<Post, 'id'>
+  const { title, body } = Object.fromEntries(data) as Omit<Post, 'id'> // Тип пост, все поля за исключением id
 
   const post = await prisma.post.create({
     data: {

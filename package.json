@@ -6,14 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma-seed": "tsx prisma/seeds.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.21.1",
     "next": "15.0.2",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "tsx": "^4.19.2"
   },
   "devDependencies": {
     "@types/node": "^20.17.5",
