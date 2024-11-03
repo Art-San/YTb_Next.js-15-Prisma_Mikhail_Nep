@@ -2,12 +2,18 @@ import { getPostById } from "@/services/posts";
 import { updatePost } from "../../actions";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-export default async function Profile({ params: { id } }: Props) {
+export default async function Profile(props: Props) {
+  const params = await props.params;
+
+  const {
+    id
+  } = params;
+
   const post = await getPostById(id);
 
   if (!post) {

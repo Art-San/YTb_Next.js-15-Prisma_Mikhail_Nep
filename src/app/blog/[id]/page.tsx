@@ -4,9 +4,9 @@ import { getAllPosts, getPostById } from '@/services/posts'
 import { removePost } from '../actions'
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -17,9 +17,11 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({
-  params: { id }
-}: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params
+
+  const { id } = params
+
   const post = await getPostById(id)
 
   return {
@@ -27,7 +29,11 @@ export async function generateMetadata({
   }
 }
 
-export default async function Post({ params: { id } }: Props) {
+export default async function Post(props: Props) {
+  const params = await props.params
+
+  const { id } = params
+
   const post = await getPostById(id)
 
   if (!post) {
